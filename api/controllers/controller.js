@@ -1,7 +1,10 @@
 import * as service from "../../services/services.js"
 
 const getProyects = (req, res) => {
-    service.getProyects({ eliminated: true })
+
+    const filter = req.query;
+
+    service.getProyects(filter)
         .then(proyects => {
             res.status(200).json(proyects)
         })
@@ -75,6 +78,8 @@ const editProyect = (req, res) => {
         proyect.link = req.body.link
     } else if (req.body.img) {
         proyect.img = req.body.img
+    } else if (req.body.technologies) {
+        proyect.technologies = req.body.technologies
     } else if (req.body.section) {
         proyect.section = req.body.section
     }

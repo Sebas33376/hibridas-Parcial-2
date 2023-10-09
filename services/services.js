@@ -4,8 +4,15 @@ const client = new MongoClient("mongodb+srv://Sebas33376:Loria43314475@parciales
 
 const db = client.db("AH20232CP1")
 
-async function getProyects() {
-    return db.collection("proyects").find({ deleted: { $ne: true } }).toArray();
+async function getProyects(filters) {
+
+    const filter = { deleted: { $ne: true } };
+
+    if (filters.section) {
+        filter.section = filters.section
+    }
+
+    return db.collection("proyects").find(filter).toArray();
 }
 
 async function getProyectById(id) {
