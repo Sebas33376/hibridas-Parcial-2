@@ -19,7 +19,7 @@ async function getProyectById(id) {
     return db.collection("proyects").findOne({ _id: new ObjectId(id) });
 }
 
-async function crateProyect(proyect) {
+async function createProyect(proyect) {
     const newProyect = await db.collection("proyects").insertOne(proyect);
     return newProyect;
 }
@@ -42,7 +42,7 @@ async function deletProyect(id) {
 export {
     getProyects,
     getProyectById,
-    crateProyect,
+    createProyect,
     replaceProyect,
     editProyect,
     deletProyect

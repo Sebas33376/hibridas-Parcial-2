@@ -1,13 +1,13 @@
 import * as service from "../../services/services.js"
 
+
 const getProyects = (req, res) => {
 
     const filter = req.query;
 
     service.getProyects(filter)
-        .then(proyects => {
-            res.status(200).json(proyects)
-        })
+        .then(proyects => res.status(200).json(proyects))
+        .catch(err => res.status(404).json())
 }
 
 const getProyectById = (req, res) => {
@@ -29,10 +29,11 @@ const addProyect = (req, res) => {
         link: req.body.link,
         img: req.body.img,
         technologies: req.body.technologies,
-        section: req.body.section
+        section: req.body.section,
+        client: req.body.client
     }
 
-    service.crateProyect(proyect)
+    service.createProyect(proyect)
         .then(newProyect => {
             res.status(201).json(newProyect);
         })
@@ -48,7 +49,8 @@ const replaceProyect = (req, res) => {
         link: req.body.link,
         img: req.body.img,
         technologies: req.body.technologies,
-        section: req.body.section
+        section: req.body.section,
+        client: req.body.client
     }
 
     service.replaceProyect(id, proyect)
@@ -82,6 +84,8 @@ const editProyect = (req, res) => {
         proyect.technologies = req.body.technologies
     } else if (req.body.section) {
         proyect.section = req.body.section
+    } else if (req.body.client) {
+        proyect.client = req.body.client
     }
 
     service.editProyect(id, proyect)

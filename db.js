@@ -7,10 +7,8 @@ const db = client.db("AH20232CP1")
 client.connect()
 .then( async() => {
     console.log("Conectado");
-    const data = await db.collection("proyects").find().toArray();
-    console.log(data);
 })
 .catch((err) => {
-    console.log("No Conectado");
+    console.log("No se pudo conectar");
     console.log(err);
 })
