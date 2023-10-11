@@ -6,7 +6,14 @@ const db = client.db("AH20232CP1")
 
 async function getClients() {
 
-    return db.collection("clients").find().toArray();
+    const filter = { deleted: { $ne: true } };
+
+    return db.collection("clients").find(filter).toArray();
+
+}
+
+async function getClientById(id) {
+    return db.collection("clients").findOne({ _id: new ObjectId(id) });
 }
 
 async function createClient(client) {
@@ -14,7 +21,20 @@ async function createClient(client) {
     return newClient;
 }
 
+async function editClient(id, client) {
+    const edited = await db.collection("clients").updateOne({ _id: new ObjectId(id) }, { $set: client });
+    return edited;
+}
+
+async function deletClient(id) {
+    const deleted = await db.collection("clients").updateOne({ _id: new ObjectId(id) }, { $set: { deleted: true } });
+    return deleted;
+}
+
 export {
     getClients,
-    createClient
+    createClient,
+    getClientById,
+    editClient,
+    deletClient
 }

@@ -105,7 +105,7 @@ const editProyect = (req, res) => {
 const deletProyect = (req, res) => {
     const id = req.params.id;
     service.deletProyect(id)
-        .then(() => res.status(202).json())
+        .then(proyect => res.status(202).json(proyect))
         .catch((err) => res.status(204).json())
 
 }

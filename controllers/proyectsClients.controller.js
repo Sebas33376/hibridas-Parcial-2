@@ -1,4 +1,5 @@
-import * as service from "../../services/proyectsClients.services.js"
+import * as service from "../services/proyectsClients.services.js"
+import * as views from "../views/views.js"
 
 
 const getProyectsByClient = (req, res) => {
@@ -7,10 +8,9 @@ const getProyectsByClient = (req, res) => {
 
     service.updateClientProyects(client)
         .then(client => res.status(201).json(client))
-        .catch(err => res.status(404).json())
 
     service.getProyectsByClient(client)
-        .then(client => res.status(200).json(client))
+        .then(client => res.send(views.createClientProyects(client)))
         .catch(err => res.status(404).json())
 }
 

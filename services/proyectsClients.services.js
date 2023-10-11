@@ -14,7 +14,6 @@ async function updateClientProyects(filters) {
 
     let proyects;
 
-
     if (clientProyects[0].proyects.length == 0) {
 
         proyects = db.collection("proyects").find(filters).toArray()
@@ -35,9 +34,8 @@ async function updateClientProyects(filters) {
                 .then(proyects => {
                     for (const proyect of proyects) {
 
-                        db.collection("proyects_clients").updateOne({ _id : proyect._id },
-                            { $addToSet: { proyects: proyect}})
-
+                        db.collection("proyects_clients").updateOne({ _id: proyect._id },
+                            { $addToSet: { proyects: proyect } })
 
                     }
                 })
@@ -55,9 +53,10 @@ async function getProyectsByClient(filters) {
 
     filter.clientName = filters.client;
 
-    return  db.collection("proyects_clients").find(filter).toArray()
+    return db.collection("proyects_clients").find(filter).toArray()
 
 }
+
 
 export {
     updateClientProyects,
