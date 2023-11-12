@@ -4,7 +4,7 @@ const client = new MongoClient("mongodb+srv://Sebas33376:Loria43314475@parciales
 
 const db = client.db("AH20232CP1")
 
-async function getProyects(filters) {
+async function getTeams(filters) {
 
     const filter = { deleted: { $ne: true } };
 
@@ -12,38 +12,38 @@ async function getProyects(filters) {
         filter.section = filters.section
     }
 
-    return db.collection("proyects").find(filter).toArray();
+    return db.collection("teams").find(filter).toArray();
 }
 
-async function getProyectById(id) {
-    return db.collection("proyects").findOne({ _id: new ObjectId(id) });
+async function getTeamById(id) {
+    return db.collection("teams").findOne({ _id: new ObjectId(id) });
 }
 
-async function createProyect(proyect) {
-    const newProyect = await db.collection("proyects").insertOne(proyect);
-    return newProyect;
+async function createTeam(team) {
+    const newTeam = await db.collection("teams").insertOne(team);
+    return newTeam;
 }
 
-async function replaceProyect(id, proyect) {
-    const replaced = await db.collection("proyects").replaceOne({ _id: new ObjectId(id) }, proyect);
+async function replaceTeam(id, team) {
+    const replaced = await db.collection("teams").replaceOne({ _id: new ObjectId(id) }, team);
     return replaced;
 }
 
-async function editProyect(id, proyect) {
-    const edited = await db.collection("proyects").updateOne({ _id: new ObjectId(id) }, { $set: proyect });
+async function editTeam(id, team) {
+    const edited = await db.collection("teams").updateOne({ _id: new ObjectId(id) }, { $set: team });
     return edited;
 }
 
-async function deletProyect(id) {
-    const deleted = await db.collection("proyects").updateOne({ _id: new ObjectId(id) }, { $set: { deleted: true } });
+async function deletTeam(id) {
+    const deleted = await db.collection("teams").updateOne({ _id: new ObjectId(id) }, { $set: { deleted: true } });
     return deleted;
 }
 
 export {
-    getProyects,
-    getProyectById,
-    createProyect,
-    replaceProyect,
-    editProyect,
-    deletProyect
+    getTeams,
+    getTeamById,
+    createTeam,
+    replaceTeam,
+    editTeam,
+    deletTeam
 }

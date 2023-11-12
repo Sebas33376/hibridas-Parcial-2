@@ -3,12 +3,12 @@ import * as controller from "../controllers/controller.js"
 
 const apiRoute = Router();
 
-apiRoute.get("/proyects", controller.getProyects);
-apiRoute.get("/proyects/:id", controller.getProyectById);
-apiRoute.post("/proyects", controller.addProyect);
-apiRoute.put("/proyects/:id", controller.replaceProyect);
-apiRoute.patch("/proyects/:id", controller.editProyect);
-apiRoute.delete("/proyects/:id", controller.deletProyect);
+apiRoute.get("/teams", controller.getTeams);
+apiRoute.get("/teams/:id", controller.getTeamById);
+apiRoute.post("/teams", controller.addTeam);
+apiRoute.put("/teams/:id", controller.replaceTeam);
+apiRoute.patch("/teams/:id", controller.editTeam);
+apiRoute.delete("/teams/:id", controller.deletTeam);
 
 
 export default apiRoute
