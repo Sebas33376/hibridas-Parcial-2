@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { SessionProvider } from "../context/SessionContext.jsx";
+import NavBar from "./NavBar.jsx";
 
-const Layout = ({ children, url , ...rest }) => {
-  return <div {...rest}>
-    <div>
-        <Link to={url}>atras</Link>
-    </div>
-    {children}</div>;
+const Layout = ({ children, ...rest }) => {
+  return (
+    <SessionProvider>
+      <div {...rest}>
+        <NavBar/>
+        {children}
+      </div>
+    </SessionProvider>
+  );
 };
 
 export default Layout;
